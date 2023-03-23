@@ -27,6 +27,11 @@ function Cards({increaseCount}){
     ].sort(() => Math.random() - 0.5)) 
 
     const [prev, setPrev] = useState(-1)
+    const [clicked, setClicked] = useState(new Set())
+
+    function isClicked(id) {
+        return clicked.has(id)
+    }
 
     function check(current){
         var matchSound = new Audio("img/match.mp3");
@@ -49,24 +54,28 @@ function Cards({increaseCount}){
                 noMatchSound.play();
             },1000)
             increaseCount();
-
         }
     }
 
     function Clicks(id){
-        if(prev === -1){
-            items[id].stat = "active"
-            setItems([...items])
-            setPrev(id)
-        }else{
-            check(id)
+        if (!isClicked(id)) {
+            if(prev === -1){
+                items[id].stat = "active"
+                setItems([...items])
+                setPrev(id)
+                setClicked(new Set(clicked).add(id))
+            }else{
+                check(id)
+                setClicked(new Set(clicked).add(id))
+            }
         }
     }
 
     return (
         <div className="container">
             {items.map((item, index) => (
-                <Card key={index} item={item} id={index} Clicks={Clicks} />
+                <Card key={index} item
+={item} id={index} Clicks={Clicks} />
             ))}
         </div>
        
