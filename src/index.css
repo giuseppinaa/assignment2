@@ -1,8 +1,7 @@
 /*FIX --- 
-- Link new game buttun to refresh
-
-- Should contain a live counter for how many turns made so far.
-- Announce when the game is completed.
+- Link new game buttun to refresh ----DONE
+- Should contain a live counter for how many turns made so far. --DONE
+- Announce when the game is completed. ---DONE
 */
 
 *{
@@ -56,22 +55,25 @@ h1{
   color: white;
   background-color: rgb(37, 183, 37);
   font-size: 80px;
-  text-align: center;
-  margin-left: 20%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 5px;
-  margin-bottom: 15px;
   border-radius: 10px;
+  
 }  
 
 .loser{
   color: white;
   background-color: crimson;
-  font-size: 80px;
-  text-align: center;
-  margin-left: 20%;
+  font-size: 38px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 5px;
-  margin-bottom: 15px;
-  border-radius: 10px;;
+  border-radius: 10px;
 }  
 
 /*.counterLabel{
@@ -98,6 +100,10 @@ h1{
   animation: 2s hideCard linear;
   transition: transform 0.5s;
 }
+.card:hover{
+  cursor: pointer;
+}
+
 @keyframes hideCard{
   0%, 70%{
     transform: rotateY(360deg);
@@ -134,6 +140,10 @@ h1{
 
   .card.active{
     transform: rotateY(0);
+    pointer-events: none;
+  }
+  .card.active:hover{
+    cursor: auto;
   }
 
   .card.active img{
